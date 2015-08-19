@@ -83,9 +83,63 @@ void init(void){
     puts("success!");
 }
 
+void resize(void){
+    struct naive_adj_mat *nam = 0;
+    int i = 0;
+    int j = 0;
+
+    puts("\ntesting resize");
+
+    nam = nam_new();
+    assert( nam );
+
+    assert( nam_resize(nam, 5) );
+
+    assert( nam->n_nodes == 5 );
+    assert( nam_size(nam) == 5 );
+
+
+    assert( nam_add_edge(nam, 0, 2) );
+    assert( nam_add_edge(nam, 1, 0) );
+    assert( nam_add_edge(nam, 3, 1) );
+
+
+    assert( nam_test_edge(nam, 0, 2) );
+    assert( nam_test_edge(nam, 1, 0) );
+    assert( nam_test_edge(nam, 3, 1) );
+
+    assert( 0 == nam_test_edge(nam, 2, 0) );
+    assert( 0 == nam_test_edge(nam, 0, 1) );
+    assert( 0 == nam_test_edge(nam, 1, 3) );
+
+
+    assert( nam_resize(nam, 9) );
+    assert( nam_size(nam) == 9 );
+
+    assert( nam_test_edge(nam, 0, 2) );
+    assert( nam_test_edge(nam, 1, 0) );
+    assert( nam_test_edge(nam, 3, 1) );
+
+    assert( 0 == nam_test_edge(nam, 2, 0) );
+    assert( 0 == nam_test_edge(nam, 0, 1) );
+    assert( 0 == nam_test_edge(nam, 1, 3) );
+
+    assert( nam_add_edge(nam, 8, 7) );
+
+    assert( nam_test_edge(nam, 8, 7) );
+
+
+    /* free nam as it was allocated via new */
+    assert( nam_destroy(nam, 1) );
+
+    puts("success!");
+}
 int main(void){
     simple();
+
     init();
+
+    resize();
 
     puts("\noverall testing success!");
 

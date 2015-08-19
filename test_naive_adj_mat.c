@@ -11,6 +11,8 @@ void simple(void){
     int i = 0;
     int j = 0;
 
+    puts("\ntesting basic usage");
+
     nam = nam_new();
     assert( nam );
 
@@ -58,10 +60,14 @@ void simple(void){
 
     /* free nam as it was allocated via new */
     assert( nam_destroy(nam, 1) );
+
+    puts("success!");
 }
 
 void init(void){
     struct naive_adj_mat nam;
+
+    puts("\ntesting init");
 
     assert( nam_init(&nam) );
 
@@ -73,10 +79,16 @@ void init(void){
      * allocated
      */
     assert( nam_destroy(&nam, 0) );
+
+    puts("success!");
 }
 
 int main(void){
     simple();
     init();
+
+    puts("\noverall testing success!");
+
+    return 0;
 }
 

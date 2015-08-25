@@ -85,8 +85,6 @@ void init(void){
 
 void resize(void){
     struct naive_adj_mat *nam = 0;
-    int i = 0;
-    int j = 0;
 
     puts("\ntesting resize");
 

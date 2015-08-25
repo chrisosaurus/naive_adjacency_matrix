@@ -134,12 +134,42 @@ void resize(void){
 
     puts("success!");
 }
+
+void sizing(void){
+    struct naive_adj_mat *nam = 0;
+    unsigned int i = 0;
+    unsigned int j = 0;
+
+    puts("\ntesting initial sizing");
+
+    nam = nam_new(6);
+    assert( nam );
+
+    assert( nam->n_nodes == 6 );
+    assert( nam_size(nam) == 6 );
+
+
+    for( i=0; i<5; ++i ){
+        for( j=0; j<5; ++j ){
+            assert( 0 == nam_test_edge(nam, i, j) );
+        }
+    }
+
+
+    /* free nam as it was allocated via new */
+    assert( nam_destroy(nam, 1) );
+
+    puts("success!");
+}
+
 int main(void){
     simple();
 
     init();
 
     resize();
+
+    sizing();
 
     puts("\noverall testing success!");
 

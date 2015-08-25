@@ -38,7 +38,7 @@ run_tests: compile_tests
 
 compile_tests: clean ${OBJ}
 	@echo "compiling tests"
-	@${CC} test_naive_adj_mat.c -o test_nam ${LDFLAGS} ${OBJ}
+	@${CC} test_naive_adj_mat.c -o test_nam ${LDFLAGS} ${CFLAGS} ${OBJ}
 	@make -s cleanobj
 
 .PHONY: all clean cleanobj naive_adj_mat test

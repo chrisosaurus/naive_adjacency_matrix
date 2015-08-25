@@ -6,6 +6,11 @@
 
 #include "naive_adj_mat.h"
 
+void simple(void );
+void init(void );
+void resize(void );
+void sizing(void );
+
 void simple(void){
     struct naive_adj_mat *nam = 0;
     int i = 0;

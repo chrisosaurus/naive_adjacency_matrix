@@ -2,6 +2,13 @@
 
 A naive adjacency matrix implementation
 
+The `naive` comes from the fact that each edge is represented using a whole char,
+which is poor utilisation of space since we only over store a '0' (no edge), or '1' (edge).
+
+For a more space efficient solution see https://github.com/mkfifo/bitwise_adjacency_matrix
+
+Time / Speed comparisons will come shortly.
+
 Example usage
 --------------
 

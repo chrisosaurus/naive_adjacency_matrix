@@ -62,6 +62,8 @@ Example usage
 
 output:
 
+    chris@Ox1b naive_adjacency_matrix(master)-> make example
+
     running example
     ./example
     edge exists from 0 to 1

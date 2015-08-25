@@ -32,6 +32,11 @@ int main(void){
     /* delete edge 0 -> 1 */
     nam_remove_edge(nam, 0, 1);
 
+    /* test removed connections */
+    if( ! nam_test_edge(nam, 0, 1) ){
+        puts("removed edge from 0 to 1");
+    }
+
     /* get number of nodes */
     n = nam_size(nam);
 

@@ -39,6 +39,11 @@ Example usage
         /* delete edge 0 -> 1 */
         nam_remove_edge(nam, 0, 1);
 
+        /* test removed connections */
+        if( ! nam_test_edge(nam, 0, 1) ){
+            puts("removed edge from 0 to 1");
+        }
+
         /* get number of nodes */
         n = nam_size(nam);
 
@@ -68,6 +73,7 @@ output:
     ./example
     edge exists from 0 to 1
     no edge exists from 1 to 0
+    removed edge from 0 to 1
 
     list of all edges
     0 -> 2

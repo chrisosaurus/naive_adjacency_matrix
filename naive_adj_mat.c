@@ -25,7 +25,7 @@ static unsigned char * nam_access(unsigned char *matrix, unsigned int n_nodes, u
     }
 
     /* index */
-    index = col * n_nodes + row;
+    index = row * n_nodes + col;
 
     if( index >= (n_nodes * n_nodes) ){
         puts("nam_access: illegal index");

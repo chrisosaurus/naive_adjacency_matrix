@@ -10,7 +10,7 @@ struct naive_adj_mat {
      * 2d array of cells
      * each cell is a single edge (set to 0 or 1)
      * stored in row-major order
-     * index = col * n_nodes + row;
+     * index = row * n_nodes + col;
      *
      * current size is n_nodes * n_nodes
      */

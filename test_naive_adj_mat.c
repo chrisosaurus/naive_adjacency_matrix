@@ -13,7 +13,7 @@ void simple(void){
 
     puts("\ntesting basic usage");
 
-    nam = nam_new();
+    nam = nam_new(0);
     assert( nam );
 
     assert( nam_resize(nam, 5) );
@@ -69,7 +69,7 @@ void init(void){
 
     puts("\ntesting init");
 
-    assert( nam_init(&nam) );
+    assert( nam_init(&nam, 0) );
 
     assert( nam_resize(&nam, 4) );
 
@@ -90,7 +90,7 @@ void resize(void){
 
     puts("\ntesting resize");
 
-    nam = nam_new();
+    nam = nam_new(0);
     assert( nam );
 
     assert( nam_resize(nam, 5) );

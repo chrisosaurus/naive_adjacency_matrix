@@ -30,30 +30,36 @@ static unsigned char * nam_access(unsigned char *matrix, unsigned int n_nodes, u
     return &(matrix[index]);
 }
 
-/* allocate and initialise a new adj. matrix
+/* allocate and initialise a new adj. matrix containing `num_nodes` nodes
+ * `num_nodes` may be 0
  *
  * returns * on success
  * returns 0 on error
  */
-struct naive_adj_mat * nam_new(void){
+struct naive_adj_mat * nam_new(unsigned int num_nodes){
     struct naive_adj_mat *mat = 0;
 
     mat = calloc(1, sizeof(struct naive_adj_mat));
     if( ! mat ){
-        puts("nam_new: first call to calloc failed");
+        puts("nam_new: call to calloc failed");
         return 0;
     }
 
-    /* FIXME consider allowing for initial sizing */
+    if( ! nam_init(mat, num_nodes) ){
+        puts("nam_new: call to nam_init failed");
+        return 0;
+    }
+
     return mat;
 }
 
-/* initialise an existing adj. matrix
+/* initialise an existing adj. matrix containing `num_nodes` nodes
+ * `num_nodes` may be 0
  *
  * returns 1 on success
- * returns o on failure
+ * returns 0 on failure
  */
-unsigned int nam_init(struct naive_adj_mat *nam){
+unsigned int nam_init(struct naive_adj_mat *nam, unsigned int num_nodes){
     if( ! nam ){
         puts("nam_init: nam was null");
         return 0;
@@ -62,6 +68,14 @@ unsigned int nam_init(struct naive_adj_mat *nam){
     /* initialise to 0 */
     nam->n_nodes = 0;
     nam->matrix = 0;
+
+    /* only call nam_resize if we have a `num_nodes` > 0 */
+    if( num_nodes ){
+        if( ! nam_resize(nam, num_nodes) ){
+            puts("nam_init: call to nam_resize failed");
+            return 0;
+        }
+    }
 
     return 1;
 }
@@ -95,7 +109,8 @@ unsigned int nam_destroy(struct naive_adj_mat *nam, unsigned int free_nam){
 }
 
 /* resize an existing adj. matrix to include enough space for
- * the number of nodes specified by `num_node`
+ * the number of nodes specified by `num_nodes`
+ * `num_nodes` must be greater than 0
  *
  * returns 1 on success
  * returns 0 on failure
@@ -109,6 +124,11 @@ unsigned int nam_resize(struct naive_adj_mat *nam, unsigned int num_nodes){
 
     if( ! nam ){
         puts("nam_resize: nam was null");
+        return 0;
+    }
+
+    if( ! num_nodes ){
+        puts("nam_resize: num_nodes must be greater than 0");
         return 0;
     }
 

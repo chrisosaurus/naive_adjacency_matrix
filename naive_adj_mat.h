@@ -10,19 +10,21 @@ struct naive_adj_mat {
     unsigned char *matrix;
 };
 
-/* allocate and initialise a new adj. matrix
+/* allocate and initialise a new adj. matrix containing `num_nodes` nodes
+ * `num_nodes` may be 0
  *
  * returns * on success
  * returns 0 on error
  */
-struct naive_adj_mat * nam_new(void);
+struct naive_adj_mat * nam_new(unsigned int num_nodes);
 
-/* initialise an existing adj. matrix
+/* initialise an existing adj. matrix containing `num_nodes` nodes
+ * `num_nodes` may be 0
  *
  * returns 1 on success
- * returns o on failure
+ * returns 0 on failure
  */
-unsigned int nam_init(struct naive_adj_mat *nam);
+unsigned int nam_init(struct naive_adj_mat *nam, unsigned int num_nodes);
 
 /* destroy an existing adj. matrix
  * will call free on `nam` if `free_name` is truethy
@@ -32,9 +34,9 @@ unsigned int nam_init(struct naive_adj_mat *nam);
  */
 unsigned int nam_destroy(struct naive_adj_mat *nam, unsigned int free_nam);
 
-
 /* resize an existing adj. matrix to include enough space for
- * the number of nodes specified by `num_node`
+ * the number of nodes specified by `num_nodes`
+ * `num_nodes` must be greater than 0
  *
  * returns 1 on success
  * returns 0 on failure

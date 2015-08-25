@@ -41,5 +41,18 @@ compile_tests: clean ${OBJ}
 	@${CC} test_naive_adj_mat.c -o test_nam ${LDFLAGS} ${CFLAGS} ${OBJ}
 	@make -s cleanobj
 
-.PHONY: all clean cleanobj naive_adj_mat test
+example: run_example
+
+run_example: compile_example
+	@echo "\n\nrunning example"
+	./example
+	@echo "\n"
+
+compile_example: clean ${OBJ}
+	@echo "compiling example"
+	@${CC} example.c -o example ${LDFLAGS} ${CFLAGS} ${OBJ}
+	@make -s cleanobj
+
+
+.PHONY: all clean cleanobj naive_adj_mat test example
 

@@ -1,4 +1,4 @@
-# naive adjacency matrix [![Build Status](https://travis-ci.org/mkfifo/naive_adjacency_matrix.svg)](https://travis-ci.org/mkfifo/naive_adjacency_matrix)
+# naive adjacency matrix [![Build Status](https://travis-ci.org/mkfifo/naive_adjacency_matrix.svg)](https://travis-ci.org/mkfifo/naive_adjacency_matrix) [![Coverage Status](https://coveralls.io/repos/mkfifo/naive_adjacency_matrix/badge.svg)](https://coveralls.io/github/mkfifo/naive_adjacency_matrix)
 
 A naive adjacency matrix implementation
 

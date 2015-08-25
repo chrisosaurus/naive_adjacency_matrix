@@ -3,9 +3,6 @@
 
 #include "naive_adj_mat.h"
 
-/* FIXME pending implementation */
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-
 /* return pointer to cell in matrix at [col][row]
  * returns 0 on error
  */

@@ -6,7 +6,14 @@
  */
 struct naive_adj_mat {
     unsigned int n_nodes;
-    /* current size is n_nodes * n_nodes */
+    /*
+     * 2d array of cells
+     * each cell is a single edge (set to 0 or 1)
+     * stored in row-major order
+     * index = col * n_nodes + row;
+     *
+     * current size is n_nodes * n_nodes
+     */
     unsigned char *matrix;
 };
 

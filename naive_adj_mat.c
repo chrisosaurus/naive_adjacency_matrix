@@ -9,6 +9,11 @@
 static unsigned char * nam_access(unsigned char *matrix, unsigned int n_nodes, unsigned int col, unsigned int row){
     unsigned int index = 0;
 
+    if( ! matrix ){
+        puts("nam_access: matrix was null");
+        return 0;
+    }
+
     if( col >= n_nodes ){
         puts("nam_access: provided column was greater than n_nodes");
         return 0;

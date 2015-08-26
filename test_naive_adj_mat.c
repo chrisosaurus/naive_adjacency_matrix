@@ -6,12 +6,16 @@
 
 #include "naive_adj_mat.h"
 
-void simple(void );
-void init(void );
-void resize(void );
-void sizing(void );
+void simple(void);
+void init(void);
+void resize(void);
+void sizing(void);
 void null(void);
 void invalid(void);
+void internal(void);
+
+/* internal function to test */
+unsigned char * nam_access(unsigned char *matrix, unsigned int n_nodes, unsigned int col, unsigned int row);
 
 void simple(void){
     struct naive_adj_mat *nam = 0;
@@ -223,6 +227,26 @@ void invalid(void){
     puts("success!");
 }
 
+void internal(void){
+    unsigned char matrix[2];
+
+    puts("\ntesting calling internal functions with invalid arguments (warnings will be printed)");
+
+    /* invalid first arg */
+    assert( 0 == nam_access(0, 0, 0, 0) );
+
+    /* invalid second arg */
+    assert( 0 == nam_access(matrix, 0, 0, 0) );
+
+    /* invalid third arg */
+    assert( 0 == nam_access(matrix, 2, 3, 0) );
+
+    /* invalid fourth arg */
+    assert( 0 == nam_access(matrix, 2, 0, 3) );
+
+    puts("success!");
+}
+
 int main(void){
     simple();
 
@@ -235,6 +259,8 @@ int main(void){
     null();
 
     invalid();
+
+    internal();
 
     puts("\noverall testing success!");
 

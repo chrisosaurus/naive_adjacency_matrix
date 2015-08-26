@@ -3,10 +3,15 @@
 
 #include "naive_adj_mat.h"
 
+/* leaving this in place as we have some internal only helper functions
+ * that we only exposed to allow for easy testing and extension
+ */
+#pragma GCC diagnostic ignored "-Wmissing-prototypes"
+
 /* return pointer to cell in matrix at [col][row]
  * returns 0 on error
  */
-static unsigned char * nam_access(unsigned char *matrix, unsigned int n_nodes, unsigned int col, unsigned int row){
+unsigned char * nam_access(unsigned char *matrix, unsigned int n_nodes, unsigned int col, unsigned int row){
     unsigned int index = 0;
 
     if( ! matrix ){

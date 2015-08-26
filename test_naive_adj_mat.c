@@ -10,6 +10,8 @@ void simple(void );
 void init(void );
 void resize(void );
 void sizing(void );
+void null(void);
+void invalid(void);
 
 void simple(void){
     struct naive_adj_mat *nam = 0;
@@ -165,6 +167,62 @@ void sizing(void){
     puts("success!");
 }
 
+void null(void){
+    puts("\ntesting calling functions with null (warnings will be printed)");
+
+    assert( 0 == nam_init(0, 0) );
+
+    assert( 0 == nam_destroy(0, 0) );
+
+    assert( 0 == nam_resize(0, 0) );
+
+    assert( 0 == nam_size(0) );
+
+    assert( 0 == nam_add_edge(0, 0, 0) );
+
+    assert( 0 == nam_remove_edge(0, 0, 0) );
+
+    assert( 0 == nam_test_edge(0, 0, 0) );
+
+    puts("success!");
+}
+
+void invalid(void){
+    struct naive_adj_mat *nam = 0;
+
+    puts("\ntesting calling functions with invalid arguments (warnings will be printed)");
+
+    /* 2 * 2 */
+    nam = nam_new(2);
+    assert(nam);
+
+
+    /* cannot resize to 0 */
+    assert( 0 == nam_resize(nam, 0) );
+
+    /* cannot add an edge with a from >= size (2) */
+    assert( 0 == nam_add_edge(nam, 2, 0) );
+
+    /* cannot add an edge with a to >= size (2) */
+    assert( 0 == nam_add_edge(nam, 0, 2) );
+
+    /* cannot remove an edge with a from >= size (2) */
+    assert( 0 == nam_remove_edge(nam, 2, 0) );
+
+    /* cannot remove an edge with a to >= size (2) */
+    assert( 0 == nam_remove_edge(nam, 0, 2) );
+
+    /* cannot test an edge with a from >= size (2) */
+    assert( 0 == nam_test_edge(nam, 2, 0) );
+
+    /* cannot test an edge with a to >= size (2) */
+    assert( 0 == nam_test_edge(nam, 0, 2) );
+
+
+    assert( nam_destroy(nam, 1) );
+    puts("success!");
+}
+
 int main(void){
     simple();
 
@@ -173,6 +231,10 @@ int main(void){
     resize();
 
     sizing();
+
+    null();
+
+    invalid();
 
     puts("\noverall testing success!");
 
